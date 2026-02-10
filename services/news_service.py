@@ -8,21 +8,27 @@ BASE_URL = "https://newsapi.org/v2/top-headlines"
 CACHE_DURATION = timedelta(minutes=30)
 _cache = {
     "timestamp": None,
-    "data": None
+    "data": {}
 }
 
 
-def fetch_news(category=None, country="us"):
+def get_news(category=None, country="us", limit=10):
     global _cache
 
+    cache_key = category or "general"
+
     # Use cache if valid
-    if _cache["timestamp"] and datetime.now() - _cache["timestamp"] < CACHE_DURATION:
-        return _cache["data"]
+    if (
+        cache_key in _cache["data"]
+        and _cache["timestamp"]
+        and datetime.now() - _cache["timestamp"] < CACHE_DURATION
+    ):
+        return _cache["data"][cache_key]
 
     params = {
         "apiKey": NEWS_API_KEY,
         "country": country,
-        "pageSize": 10
+        "pageSize": limit
     }
 
     if category:
@@ -35,16 +41,17 @@ def fetch_news(category=None, country="us"):
 
     cleaned_articles = [
         {
-            "title": a["title"],
-            "description": a["description"],
-            "url": a["url"],
-            "source": a["source"]["name"],
-            "published_at": a["publishedAt"]
+            "title": a.get("title"),
+            "description": a.get("description"),
+            "url": a.get("url"),
+            "source": a.get("source", {}).get("name"),
+            "published_at": a.get("publishedAt"),
+            "category": category or "general"
         }
         for a in articles
     ]
 
     _cache["timestamp"] = datetime.now()
-    _cache["data"] = cleaned_articles
+    _cache["data"][cache_key] = cleaned_articles
 
     return cleaned_articles
