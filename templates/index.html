@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student News App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .endpoint {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        code {
+            background: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📰 Student News App API</h1>
+        <p>A simple API to fetch and summarize news articles for students.</p>
+        
+        <h2>Available Endpoints:</h2>
+        
+        <div class="endpoint">
+            <h3>GET /news</h3>
+            <p>Get all news articles.</p>
+            <a href="/news" class="btn">Try it</a>
+        </div>
+        
+        <div class="endpoint">
+            <h3>GET /news/business</h3>
+            <p>Get business news.</p>
+            <a href="/news/business" class="btn">Try it</a>
+        </div>
+        
+        <div class="endpoint">
+            <h3>GET /news/politics</h3>
+            <p>Get politics news.</p>
+            <a href="/news/politics" class="btn">Try it</a>
+        </div>
+        
+        <div class="endpoint">
+            <h3>GET /news/entertainment</h3>
+            <p>Get entertainment news.</p>
+            <a href="/news/entertainment" class="btn">Try it</a>
+        </div>
+        
+        <div class="endpoint">
+            <h3>GET /news/technology</h3>
+            <p>Get technology news.</p>
+            <a href="/news/technology" class="btn">Try it</a>
+        </div>
+        
+        <div class="endpoint">
+            <h3>GET /health</h3>
+            <p>Health check endpoint.</p>
+            <a href="/health" class="btn">Check Health</a>
+        </div>
+        
+        <h2>How to Use:</h2>
+        <p>Use any HTTP client (like curl, Postman, or JavaScript fetch) to call these endpoints.</p>
+        <pre><code># Example with curl
+curl http://localhost:5000/news/technology</code></pre>
+        
+        <footer>
+            <p>Built with Flask | Student News App</p>
+        </footer>
+    </div>
+</body>
+</html>
